@@ -7,11 +7,12 @@ function Coin({ name, icon, price, symbol, rank, twitterUrl }) {
       <h1 className="coin-rank">{`#${rank}`}</h1>
       <div className="coin-header">
         <img src={icon} alt={`${name} logo`} className="coin-image" />
-        <h2 className="coin-name">{name}</h2>
+        <h2 className="coin-name">
+          {name} {`(${symbol})`}
+        </h2>{" "}
       </div>
       <div className="coin-details">
-        <h3 className="coin-price">{`Price: $${price}`}</h3>
-        <h3 className="coin-symbol">{`Symbol: ${symbol}`}</h3>
+        <h3 className="mb-2">{`Price: $${parseFloat(price).toFixed(3)}`}</h3>
       </div>
       <br />
       <a

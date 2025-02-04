@@ -8,13 +8,17 @@ function App() {
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
-    Axios.get("https://api.coinstats.app/v1/coins?skip=0", {
-      headers: {
-        "x-access-token": process.env.REACT_APP_COINSTATS_API_KEY
+    Axios.get("https://api.coingecko.com/api/v3/coins/markets", {
+      params: {
+        vs_currency: "usd",
+        order: "market_cap_desc",
+        per_page: 100,
+        page: 1,
+        sparkline: false
       }
     })
       .then((response) => {
-        setlistOfCoins(response.data.coins);
+        setlistOfCoins(response.data);
       })
       .catch((error) => {
         console.error("Error fetching coin data:", error);
@@ -42,10 +46,10 @@ function App() {
             <Coin
               key={coin.id}
               name={coin.name}
-              twitterUrl={coin.twitterUrl}
-              icon={coin.icon}
-              price={coin.price}
-              rank={coin.rank}
+              twitterUrl={coin.twitter_screen_name}
+              icon={coin.image}
+              price={coin.current_price}
+              rank={coin.market_cap_rank}
               symbol={coin.symbol}
             />
           );

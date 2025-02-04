@@ -46,7 +46,6 @@ function App() {
             <Coin
               key={coin.id}
               name={coin.name}
-              twitterUrl={coin.twitter_screen_name}
               icon={coin.image}
               price={coin.current_price}
               rank={coin.market_cap_rank}
